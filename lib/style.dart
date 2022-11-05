@@ -51,7 +51,7 @@ var theme = ThemeData(  //appbar의 테마 설정
 var yellowboxcolor = Color.fromRGBO(216, 244, 141, 0.9);
 var whiteboxcolor = Color.fromRGBO(255, 255, 255, 0.3);
 
-ShowVideoImage(deviceHeight) {
+Widget ShowVideoImage(deviceHeight) {
   return Stack(
     children:[
       Container(

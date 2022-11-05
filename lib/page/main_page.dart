@@ -143,13 +143,14 @@ class _MainPageState extends State<MainPage> {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () {
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => const PostDetailPage()),
-                    );
-                  },
-                  child: style.ShowVideoImage(deviceHeight)
-                )
+                    onTap: () {
+                      Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => const PostDetailPage()),
+                      );
+                    },
+                    child: style.ShowVideoImage(deviceHeight)
+                  ),
+
               ],
             ),
           )
