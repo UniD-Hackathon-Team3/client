@@ -142,14 +142,24 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ],
                 ),
-                GestureDetector(
-                    onTap: () {
-                      Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => const PostDetailPage()),
-                      );
-                    },
-                    child: style.ShowVideoImage(deviceHeight)
-                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        for(int i = 0; i < 10; i++) GestureDetector(
+                            onTap: () {
+                              Navigator.push(context,
+                                MaterialPageRoute(builder: (context) => const PostDetailPage()),
+                              );
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: style.ShowVideoImage(deviceHeight, deviceWidth),
+                            )
+                        ),
+                      ],
+                    ),
+                  )
 
               ],
             ),
