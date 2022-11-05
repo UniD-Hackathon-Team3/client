@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nowat/page/vote_page.dart';
 import './style.dart' as style;
 import './page/main_page.dart';
 
@@ -43,9 +44,20 @@ class _MainFrameState extends State<MainFrame> {
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-            child: AppBar(title: Image.asset('images/logoWhite.png', width: 100,),),
+            child: AppBar(title: Image.asset('images/logoWhite.png', width: 100,),
+                actions: [
+                  Container(
+                    height: 50,
+                    width: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30), //모서리를 둥글게
+                      color: Color(0xDEDEDEDE),
+                    ),
+                    margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
+                    child: Text(''),
+            )])
           ),
-          Expanded(child: [MainPage(), Text("2"), Text("3")][tab]),
+          Expanded(child: [MainPage(), Text("2"), VotePage()][tab]),
           Container(
               height: 50,
               width: deviceWidth,

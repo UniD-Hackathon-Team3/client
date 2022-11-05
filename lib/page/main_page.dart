@@ -1,5 +1,7 @@
 import '../style.dart' as style;
 import 'package:flutter/material.dart';
+import 'upload_page.dart';
+import 'postdetail_page.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -28,19 +30,26 @@ class _MainPageState extends State<MainPage> {
             children: [
               Expanded(
                 flex: 7,
-                child: Container(
-                  height: 40,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(50), //모서리를 둥글게
-                    color: style.yellowboxcolor
-                  ),
-                  margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                          Text('# ' + todayQuestion,
-                              style: style.textstyle1),
-                    ]
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => const UploadPage()),
+                    );
+                  },
+                  child: Container(
+                    height: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50), //모서리를 둥글게
+                      color: style.yellowboxcolor
+                    ),
+                    margin: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                            Text('# ' + todayQuestion,
+                                style: style.textstyle1),
+                      ]
+                    ),
                   ),
                 ),
               ),
@@ -120,93 +129,14 @@ class _MainPageState extends State<MainPage> {
                     ),
                   ],
                 ),
-                Stack(
-                  children:[
-                    Container(
-                    height: deviceHeight * 0.5,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(20), //모서리를 둥글게
-                        color: Color(0xFFD9D9D9)
-                    ),
-                    margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text("영상 썸네일")
-                        ]
-                      ),
-                    ),
-                    Positioned(
-                        bottom: deviceHeight * 0.02,
-                        right: deviceHeight * 0.02,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Icon(Icons.add_circle, color: Colors.lightGreenAccent),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Icon(Icons.favorite, color: Colors.pink,),
-                            ),
-                          ],
-                        )
-                    ),
-                    Positioned(
-                        bottom: deviceHeight * 0.024,
-                        right: deviceHeight * 0.05,
-                        child: Column(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(4.0),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(4),
-                              child: Text("12"),
-                            ),
-                          ],
-                        )
-                    ),
-                    Positioned(
-                        bottom: deviceHeight * 0.015,
-                        left: deviceHeight * 0.015,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: Container(
-                                height: 50,
-                                width: 50,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(50), //모서리를 둥글게
-                                    color: style.whiteboxcolor,
-                                ),
-                                margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
-                                child: Text(''),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(4),
-                              child: SizedBox(
-                                width: 100,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('halleykimmm', style: style.textWhiteName),
-                                    Padding(
-                                      padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
-                                      child: Text('seoul sinsa', style: style.textWhiteComment,),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                    )
-                  ],
-                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => const PostDetailPage()),
+                    );
+                  },
+                  child: style.ShowVideoImage(deviceHeight)
+                )
               ],
             ),
           )
