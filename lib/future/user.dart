@@ -7,7 +7,7 @@ Future<dynamic>signupUser(String userId, String userPw) async{
     'Content-Type':'application/json'
   };
 
-  final response=await http.post(Uri.http('http://13.125.205.227:3000','/user/signup'), headers: headers, body:<String, String>{'user_id': userId, 'user_pw': userPw});
+  final response=await http.post(Uri.parse('http://13.125.205.227:3000/user/signup'),  body:<String, String>{'user_id': userId, 'user_pw': userPw});
   if(response.statusCode == 200) return User(userId: userId, userPw: userPw);
   else {
     throw Exception('Failed to signup User');
@@ -18,7 +18,7 @@ Future<dynamic>loginUser(String userId, String userPw) async{
     'Content-Type':'application/json'
   };
 
-  final response=await http.post(Uri.http('http://13.125.205.227:3000','/user/login'), headers: headers, body:<String, String>{'user_id': userId, 'user_pw': userPw});
+  final response=await http.post(Uri.parse('http://13.125.205.227:3000/user/login'), body:<String, String>{'user_id': userId, 'user_pw': userPw});
   if(response.statusCode == 200) return User(userId: userId, userPw: userPw);
   else {
     throw Exception('Failed to login User');
@@ -26,11 +26,8 @@ Future<dynamic>loginUser(String userId, String userPw) async{
 }
 
 Future<dynamic>getuserInfo(String userId) async{
-  Map<String, String> headers={
-    'Content-Type':'application/json'
-  };
 
-  final response=await http.post(Uri.http('http://13.125.205.227:3000','/user/userinfo'), headers: headers, body:<String, String>{'user_id': userId});
+  final response=await http.post(Uri.parse('http://13.125.205.227:3000/user/userinfo'), body:<String, String>{'user_id': userId});
   if(response.statusCode == 200) {
     Map<String, dynamic> json=jsonDecode(response.body);
     return User(userId: userId, posts: json['posts'], followers: json['followers']);
