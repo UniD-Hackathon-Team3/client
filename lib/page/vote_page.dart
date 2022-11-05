@@ -45,4 +45,3 @@ class _VotePageState extends State<VotePage> {
       ]
     );
   }
-}
