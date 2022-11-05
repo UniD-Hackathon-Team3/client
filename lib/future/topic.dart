@@ -4,19 +4,30 @@ Future<dynamic>getSearchWord(String word) async{
     'Content-Type':'application/json'
   };
 
-  final response=await http.post(Uri.http('http://13.125.205.227:3000/search'), headers: headers, body:<String, dynamic>{'word': word});
+  final response=await http.post(Uri.http('http://13.125.205.227:3000/','/feed/search'), headers: headers, body:<String, dynamic>{'word': word});
   if(response.statusCode == 200) {
     Map<String, dynamic> json=jsonDecode(response.body);
     return Topic(userId: json['topic_id'], title: json['title']);
   }
   else throw Exception('Failed to load User');
 }
+
+Future<dynamic>addTopic(String userId, String title) async{
+  Map<String, String> headers={
+    'Content-Type':'application/json'
+  };
+
+  final response=await http.post(Uri.http('http://13.125.205.227:3000/','/topic/addTopic'), headers: headers, body:<String, String>{'title': title, 'user_id':userId});
+  if(response.statusCode == 200) return response.body;
+  else throw Exception('Failed to load User');
+}
+
 Future<dynamic>voteTopic(String userId, String topicId) async{
   Map<String, String> headers={
     'Content-Type':'application/json'
   };
 
-  final response=await http.post(Uri.http(''), headers: headers, body:<String, String>{'user_id': userId, 'untopic_id':topicId});
+  final response=await http.post(Uri.http('http://13.125.205.227:3000/','/topic/voteTopic'), headers: headers, body:<String, String>{'user_id': userId, 'untopic_id':topicId});
   if(response.statusCode == 200) return User.fromJson(jsonDecode(response.body));
   else throw Exception('Failed to load User');
 }
@@ -26,7 +37,7 @@ Future<dynamic>randomTopic() async{
     'Content-Type':'application/json'
   };
 
-  final response=await http.post(Uri.http(''));
+  final response=await http.post(Uri.http('http://13.125.205.227:3000/','/topic/randomTopic'));
   if(response.statusCode == 200) return Topic;
   else throw Exception('Failed to load User');
 }
