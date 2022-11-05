@@ -13,14 +13,21 @@ Future<dynamic>signupUser(String userId, String userPw) async{
     throw Exception('Failed to signup User');
   }
 }
-Future<dynamic>loginUser(String userId, String userPw) async{
+Future<String>loginUser(String userId, String userPw) async{
   Map<String, String> headers={
     'Content-Type':'application/json'
   };
 
-  final response=await http.post(Uri.http('http://13.125.205.227:3000','/user/login'), headers: headers, body:<String, String>{'user_id': userId, 'user_pw': userPw});
-  if(response.statusCode == 200) return User(userId: userId, userPw: userPw);
+  final response = await http.post(
+    Uri.parse('http://13.125.205.227:3000/user/login'), 
+    body:<String, String>{'user_id': userId, 'user_pw': userPw}
+  );
+  if(response.statusCode == 200) {
+    print(response.body);
+    return response.body;
+  }
   else {
+    print(response.body);
     throw Exception('Failed to login User');
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../style.dart' as style;
 import '../main.dart';
+import '../future/user.dart';
 
 
 
@@ -20,6 +21,7 @@ class _LoginPageState extends State<LoginPage>{
   Widget build(BuildContext context){
     final deviceWidth = MediaQuery.of(context).size.width;
     final deviceHeight = MediaQuery.of(context).size.height;
+    Future<String>? checkLogin = null;
     return Scaffold(
       backgroundColor: Color(0xFF716EFF),
         body: Center(
@@ -66,7 +68,10 @@ class _LoginPageState extends State<LoginPage>{
                 padding: const EdgeInsets.all(20.0),
                 child: GestureDetector(
                   onTap: () {
-
+                    setState(() {
+                      checkLogin = loginUser(idController.text, pwController.text);
+                    });
+                      print("${idController.text},${pwController.text}");
                    // widget.setStart();
                     },
                   child: Container(
@@ -85,6 +90,17 @@ class _LoginPageState extends State<LoginPage>{
                   ),
                 ),
               ),
+              FutureBuilder(
+                future: checkLogin,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    Text("yes");
+                  } else if (snapshot.hasError) {
+                    return Text("no");
+                  }
+                  return Container();
+                },
+              )
             ],
           )
         )
