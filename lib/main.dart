@@ -65,7 +65,7 @@ class _MainFrameState extends State<MainFrame> {
                           tab = 0;
                       }),
                       child: Container(child: Text("메인", style: style.textstyle1, textAlign: TextAlign.center,))
-                  )),
+                  )), //1
                   Expanded(child: GestureDetector(
                       onTap: () =>
                           setState(() {
