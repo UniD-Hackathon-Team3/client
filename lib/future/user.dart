@@ -99,6 +99,21 @@ Future<dynamic>addComment(String userId, String content, int postId) async{
   else throw Exception('Failed to load User');
 }
 
+Future<dynamic>getSearchWord(String word) async{
+  Map<String, String> headers={
+    'Content-Type':'application/json'
+  };
+
+  final response=await http.post(Uri.http('http://13.125.205.227:3000/search'), headers: headers, body:<String, dynamic>{'word': word});
+  if(response.statusCode == 200) {
+    Map<String, dynamic> json=jsonDecode(response.body);
+    return Topic(userId: json['topic_id'], title: json['title']);
+  }
+  else throw Exception('Failed to load User');
+}
+
+
+
 class User{
   final String userId;
   final String? userPw;
@@ -110,13 +125,13 @@ class User{
     return User(userId: json['result'], userPw: json['result']);
   }
 
-
 }
 class Topic{
+  final int? topicId;
   final String title;
   final String userId;
 
-  Topic({required this.title, required this.userId});
+  Topic({this.topicId, required this.title, required this.userId});
   factory Topic.fromJson(Map<String, dynamic> json){
     return Topic(title: json[], userId: json[]);
   }
@@ -145,10 +160,10 @@ class Img{
 class Comment{
   final String content;
   final String userId;
-  final String content;
+  final int commentId;
   final int postId;
-  Comment({required this.content, required this.userId, required this.content, required this.postId});
+  Comment({required this.content, required this.userId, required this.postId, required this.commentId});
   factory Comment.fromJson(<Map<String, dynamic> json){
-  return Comment(content: json[]);
+    return Comment(content: json[], userId: json[], postId: json[], commentId: json[]);
   }
 }
