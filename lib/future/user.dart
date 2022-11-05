@@ -1,7 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-
-import 'package:flutter/cupertino.dart';
 import 'package:http/http.dart' as http;
 
 Future<dynamic>signupUser(String userId, String userPw) async{
@@ -47,8 +45,57 @@ Future<dynamic>voteTopic(String userId, String topicId) async{
     'Content-Type':'application/json'
   };
 
-  final response=await http.post(Uri.http(''), headers: headers, body:<String, String>{'user_id': userId, 'topic_id':topicId});
+  final response=await http.post(Uri.http(''), headers: headers, body:<String, String>{'user_id': userId, 'untopic_id':topicId});
   if(response.statusCode == 200) return User.fromJson(jsonDecode(response.body));
+  else throw Exception('Failed to load User');
+}
+
+Future<dynamic>randomTopic() async{
+  Map<String, String> headers={
+    'Content-Type':'application/json'
+  };
+
+  final response=await http.post(Uri.http(''));
+  if(response.statusCode == 200) return Topic;
+  else throw Exception('Failed to load User');
+}
+
+Future<dynamic>addPost(String userId, String content, int topicId) async{
+  Map<String, String> headers={
+    'Content-Type':'application/json'
+  };
+
+  final response=await http.post(Uri.http('http://13.125.205.227:3000/feed/post'));
+  if(response.statusCode == 200) {
+    Map<String, dynamic> json=jsonDecode(response.body);
+    return Post(userId: userId, content: content, topicId: topicId, postId: json['post_id']);
+  }
+  else throw Exception('Failed to load User');
+}
+
+// Future<dynamic>upload(String userId, String content, int topicId) async{
+//   Map<String, String> headers={
+//     'Content-Type':'multipart/form-data'
+//   };
+//
+//   final response=await http.post(Uri.http('http://13.125.205.227:3000/feed/upload'));
+//   if(response.statusCode == 200) {
+//     Map<String, dynamic> json=jsonDecode(response.body);
+//     return Img(url: json['img']);
+//   }
+//   else throw Exception('Failed to load User');
+// }
+
+Future<dynamic>addComment(String userId, String content, int postId) async{
+  Map<String, String> headers={
+    'Content-Type':'application/json'
+  };
+
+  final response=await http.post(Uri.http('http://13.125.205.227:3000/feed/comment'), headers: headers, body:<String, dynamic>{'user_id': userId, 'post_id':postId, 'content': content});
+  if(response.statusCode == 200) {
+    Map<String, dynamic> json=jsonDecode(response.body);
+    return Comment(userId: userId, content: content, postId: postId, commentId: json['commentId']);
+  }
   else throw Exception('Failed to load User');
 }
 
@@ -77,11 +124,31 @@ class Topic{
 }
 class Post{
   final String userId;
-  final String topic;
-  final String postId;
+  final String content;
+  final int postId;
+  final int topicId;
+  final String? img;
 
-  Post({required this.userId, required this.topic, required this.postId});
+  Post({required this.userId, required this.content, required this.postId, required this.topicId});
   factory Post.fromJson(Map<String, dynamic> json){
-    return Post(userId: json[], topic: json[], postId: json[]);
+    return Post(userId: json[], content: json[], postId: json[], topicId: json[]);
+  }
+}
+class Img{
+  final String url;
+  Img({required this.url});
+  factory Img.fromJson(<Map<String, dynamic> json){
+    return Img(url: json[]);
+  }
+}
+
+class Comment{
+  final String content;
+  final String userId;
+  final String content;
+  final int postId;
+  Comment({required this.content, required this.userId, required this.content, required this.postId});
+  factory Comment.fromJson(<Map<String, dynamic> json){
+  return Comment(content: json[]);
   }
 }
