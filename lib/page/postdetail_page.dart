@@ -60,7 +60,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                         ),
                         Container(
                             padding: EdgeInsets.fromLTRB(20, 5, 20, 0),
-                            child: style.ShowVideoImage(deviceHeight)
+                            child: style.ShowVideoImage(deviceHeight, deviceWidth)
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

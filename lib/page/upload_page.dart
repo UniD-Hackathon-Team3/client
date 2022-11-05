@@ -60,7 +60,7 @@ class _UploadPageState extends State<UploadPage> {
                       ),
                       Container(
                           padding: EdgeInsets.fromLTRB(20, 5, 20, 0),
-                          child: style.ShowVideoImage(deviceHeight)
+                          child: style.ShowVideoImage(deviceHeight, deviceWidth)
                       ),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 30, 0, 10),

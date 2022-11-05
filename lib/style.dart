@@ -51,12 +51,12 @@ var theme = ThemeData(  //appbar의 테마 설정
 var yellowboxcolor = Color.fromRGBO(216, 244, 141, 0.9);
 var whiteboxcolor = Color.fromRGBO(255, 255, 255, 0.3);
 
-Widget ShowVideoImage(deviceHeight) {
+Widget ShowVideoImage(deviceHeight, deviceWidth) {
   return Stack(
     children:[
       Container(
         height: deviceHeight * 0.5,
-        width: double.infinity,
+        width: deviceWidth * 0.9,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20), //모서리를 둥글게
             color: Color(0xFFD9D9D9)
