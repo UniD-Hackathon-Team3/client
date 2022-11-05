@@ -1,4 +1,7 @@
-
+import 'dart:async';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:dio/dio.dart';
 
 Future<dynamic>upload(String userId, String content, int topicId) async{
   Map<String, String> headers={
@@ -16,7 +19,4 @@ Future<dynamic>upload(String userId, String content, int topicId) async{
 class Img{
   final String url;
   Img({required this.url});
-  factory Img.fromJson(<Map<String, dynamic> json){
-  return Img(url: json[]);
-  }
 }
