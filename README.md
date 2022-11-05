@@ -1,7 +1,6 @@
 # nowat
 
-![image](![Group 422](https://user-images.githubusercontent.com/90396746/200146629-fdc15dd4-c630-45d3-ac5f-2fb88b5f6d4f.png)
-)</br>
+![image](![Group 422](https://user-images.githubusercontent.com/90396746/200146629-fdc15dd4-c630-45d3-ac5f-2fb88b5f6d4f.png)</br>
 
 witt
 
