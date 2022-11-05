@@ -1,17 +1,24 @@
+import '../future/post.dart';
 import '../style.dart' as style;
 import 'package:flutter/material.dart';
 
 class PostDetailPage extends StatefulWidget {
-  const PostDetailPage({Key? key}) : super(key: key);
+  const PostDetailPage({Key? key, this.feed, this.img}) : super(key: key);
 
+  final feed; 
+  final img;
   @override
   State<PostDetailPage> createState() => _PostDetailPageState();
 }
 bool onlyFriendFlag = true;
-String todayQuestion = "당신의 어린 시절 사진을 공유해주세요!";
+
 class _PostDetailPageState extends State<PostDetailPage> {
+  late Future<Map<String,dynamic>> todayQuestion;
+  
   @override
   Widget build(BuildContext context) {
+
+    todayQuestion = getNowTopic();
     final deviceWidth = MediaQuery.of(context).size.width;
     final deviceHeight = MediaQuery.of(context).size.height;
     return Material(
@@ -53,14 +60,24 @@ class _PostDetailPageState extends State<PostDetailPage> {
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text('# ' + todayQuestion,
-                                    style: style.textstyle1),
+                                FutureBuilder<Map<String, dynamic>>(
+                                  future : todayQuestion,
+                                  builder: (context, snapshot){
+                                    if(snapshot.hasData){
+                                      return Text(snapshot.data!['title'], style: style.textstyle1);
+                                    }
+                                    else if(snapshot.hasError){
+                                      return Text("${snapshot.error}");
+                                    }
+                                    return CircularProgressIndicator();
+                                  }
+                                )
                               ]
                           ),
                         ),
                         Container(
                             padding: EdgeInsets.fromLTRB(20, 5, 20, 0),
-                            child: style.ShowVideoImage(deviceHeight, deviceWidth)
+                            child:  style.ShowVideoImage(deviceHeight, deviceWidth, widget.feed, widget.img)
                         ),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

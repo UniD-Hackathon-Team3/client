@@ -1,4 +1,5 @@
 import '../style.dart' as style;
+import '../future/post.dart';
 import 'package:flutter/material.dart';
 import 'upload_page.dart';
 import 'postdetail_page.dart';
@@ -10,12 +11,23 @@ class MainPage extends StatefulWidget {
   State<MainPage> createState() => _MainPageState();
 }
 bool onlyFriendFlag = true;
-String todayQuestion = "당신의 어린 시절 사진을 공유해주세요!";
+
+ 
+
 class _MainPageState extends State<MainPage> {
+  
+  late Future<Map<String,dynamic>> todayQuestion;
+  late Future<List> feeds;
+
   @override
   Widget build(BuildContext context) {
     final deviceWidth = MediaQuery.of(context).size.width;
     final deviceHeight = MediaQuery.of(context).size.height;
+  
+    
+    todayQuestion = getNowTopic();
+    feeds = getRandomFeed(); 
+    
     return Container(
       height: 100,
       width: deviceWidth,
@@ -59,8 +71,19 @@ class _MainPageState extends State<MainPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                            Text('# ' + todayQuestion,
-                                style: style.textstyle1),
+                            FutureBuilder<Map<String, dynamic>>(
+                              future : todayQuestion,
+                              builder: (context, snapshot){
+                                if(snapshot.hasData){
+                                  return Text(snapshot.data!['title'], style: style.textstyle1);
+                                }
+                                else if(snapshot.hasError){
+                                  return Text("${snapshot.error}");
+                                }
+                                return CircularProgressIndicator();
+                              }
+                            )
+                            
                       ]
                     ),
                   ),
@@ -82,8 +105,18 @@ class _MainPageState extends State<MainPage> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Icon(Icons.timer),
-                            Text(' 3:22',
-                                style: style.textstyle1),
+                            FutureBuilder<Map<String, dynamic>>(
+                              future : todayQuestion,
+                              builder: (context, snapshot){
+                                if(snapshot.hasData){
+                                  return Text('${snapshot.data!['endtime'].substring(11,13)}:${snapshot.data!['endtime'].substring(14,16)}까지' , style: style.textstyle1);
+                                }
+                                else if(snapshot.hasError){
+                                  return Text("${snapshot.error}");
+                                }
+                                return CircularProgressIndicator();
+                              } 
+                            )
                           ],
                         ),
                       ]
@@ -144,23 +177,34 @@ class _MainPageState extends State<MainPage> {
                 ),
                   SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
-                    child: Row(
-                      children: [
-                        for(int i = 0; i < 10; i++) GestureDetector(
-                            onTap: () {
-                              Navigator.push(context,
-                                MaterialPageRoute(builder: (context) => const PostDetailPage()),
-                              );
-                            },
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: style.ShowVideoImage(deviceHeight, deviceWidth),
-                            )
-                        ),
-                      ],
-                    ),
+                    child: FutureBuilder<List>(
+                                future : feeds,
+                                builder: (context, snapshot){
+                                  if(snapshot.hasData){
+                                    return Row(
+                                      children: [
+                                        for(int i = 0; i < 4; i++) GestureDetector(
+                                            onTap: () {
+                                              Navigator.push(context,
+                                                MaterialPageRoute(builder: (context) => PostDetailPage(feed : snapshot.data![i], img : Image.network('http://13.125.205.227:3000/static/4.png'))
+                                                ),
+                                              );
+                                            },
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child:style.ShowVideoImage(deviceHeight, deviceWidth, snapshot.data![i], Image.network('http://13.125.205.227:3000/static/4.png'))  
+                                            )
+                                        ),
+                                      ],
+                                    );                                    
+                                  }
+                                  else if(snapshot.hasError){
+                                    return Text("${snapshot.error}");
+                                  }
+                                  return CircularProgressIndicator();
+                                } 
+                              ) 
                   )
-
               ],
             ),
           )

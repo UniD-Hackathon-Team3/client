@@ -51,7 +51,7 @@ var theme = ThemeData(  //appbar의 테마 설정
 var yellowboxcolor = Color.fromRGBO(216, 244, 141, 0.9);
 var whiteboxcolor = Color.fromRGBO(255, 255, 255, 0.3);
 
-Widget ShowVideoImage(deviceHeight, deviceWidth) {
+Widget ShowVideoImage(deviceHeight, deviceWidth, feed, img) {
   return Stack(
     children:[
       Container(
@@ -65,7 +65,7 @@ Widget ShowVideoImage(deviceHeight, deviceWidth) {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("영상 썸네일")
+              img
             ]
         ),
       ),
@@ -95,7 +95,7 @@ Widget ShowVideoImage(deviceHeight, deviceWidth) {
               ),
               Padding(
                 padding: const EdgeInsets.all(6),
-                child: Text("12", style: textWhiteComment),
+                child: Text(feed['likes'].toString(), style: textWhiteComment),
               ),
             ],
           )
@@ -113,6 +113,11 @@ Widget ShowVideoImage(deviceHeight, deviceWidth) {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50), //모서리를 둥글게
                     color: Colors.black,
+                    image : DecorationImage(
+                      image: AssetImage(
+                        'images/profile2.png'
+                      )
+                    )
                   ),
                   margin: EdgeInsets.fromLTRB(5, 0, 0, 0),
                   child: Text(''),
@@ -125,10 +130,10 @@ Widget ShowVideoImage(deviceHeight, deviceWidth) {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('halleykimmm', style: textWhiteName),
+                      Text(feed['user_id'], style: textWhiteName),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(0, 4, 0, 0),
-                        child: Text('seoul sinsa', style: textWhiteComment,),
+                        child: Text(feed['content'], style: textWhiteComment,),
                       ),
                     ],
                   ),
