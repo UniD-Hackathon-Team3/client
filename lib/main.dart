@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import './style.dart' as style;
+import './page/vote_page.dart';
 import './page/main_page.dart';
+import './page/main_search.dart';
 
 void main() {
   runApp(const MyApp());
@@ -45,7 +47,7 @@ class _MainFrameState extends State<MainFrame> {
             padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
             child: AppBar(title: Image.asset('../images/logoWhite.png', width: 100,),),
           ),
-          Expanded(child: [MainPage(), Text("2"), Text("3")][tab]),
+          Expanded(child: [MainPage(), MainSearch(), VotePage()][tab]),
           Container(
               height: 50,
               width: deviceWidth,
