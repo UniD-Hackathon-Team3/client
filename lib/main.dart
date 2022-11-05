@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NowAt',
+      title: 'witt',
       theme: style.theme,
       home: const MainFrame(),
     );
