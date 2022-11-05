@@ -41,7 +41,10 @@ class _MainFrameState extends State<MainFrame> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          AppBar(title: Text("NowAtq"), centerTitle: true,),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+            child: AppBar(title: Image.asset('../images/logoWhite.png', width: 100,),),
+          ),
           Expanded(child: [MainPage(), Text("2"), Text("3")][tab]),
           Container(
               height: 50,

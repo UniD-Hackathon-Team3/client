@@ -11,6 +11,12 @@ var textstyle2 = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+var textWHAT = TextStyle(
+  fontSize: 23.0,
+  color: Colors.white,
+  fontWeight: FontWeight.bold,
+);
+
 
 var theme = ThemeData(  //appbar의 테마 설정
     appBarTheme: AppBarTheme(
@@ -24,3 +30,6 @@ var theme = ThemeData(  //appbar의 테마 설정
       color: Colors.black,
     ),
 );
+
+var yellowboxcolor = Color.fromRGBO(216, 244, 141, 0.9);
+var whiteboxcolor = Color.fromRGBO(255, 255, 255, 0.3);
