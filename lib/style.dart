@@ -17,6 +17,17 @@ var textWHAT = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+var textWhiteName = TextStyle(
+  fontSize: 13.0,
+  color: Colors.white,
+  fontWeight: FontWeight.bold,
+);
+var textWhiteComment = TextStyle(
+  fontSize: 10.0,
+  color: Colors.white,
+  fontWeight: FontWeight.normal,
+);
+
 
 var theme = ThemeData(  //appbar의 테마 설정
     appBarTheme: AppBarTheme(
