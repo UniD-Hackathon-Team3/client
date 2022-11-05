@@ -12,6 +12,10 @@ class LoginPage extends StatefulWidget{
 }
 
 class _LoginPageState extends State<LoginPage>{
+
+  final TextEditingController idController = TextEditingController();
+  final TextEditingController pwController = TextEditingController();
+
   @override
   Widget build(BuildContext context){
     final deviceWidth = MediaQuery.of(context).size.width;
@@ -31,6 +35,7 @@ class _LoginPageState extends State<LoginPage>{
               Padding(
                 padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                 child: TextField(
+                  controller: idController,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: style.whiteboxcolor,
@@ -47,6 +52,7 @@ class _LoginPageState extends State<LoginPage>{
               Padding(
                 padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                 child: TextField(
+                  controller: pwController,
                     decoration: InputDecoration(
                       filled: true,
                       fillColor: style.whiteboxcolor,
@@ -59,7 +65,10 @@ class _LoginPageState extends State<LoginPage>{
               Padding(
                 padding: const EdgeInsets.all(20.0),
                 child: GestureDetector(
-                  onTap: () {widget.setStart();},
+                  onTap: () {
+
+                   // widget.setStart();
+                    },
                   child: Container(
                     height: 40,
                     width: deviceWidth * 0.5,
