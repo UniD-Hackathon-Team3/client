@@ -134,6 +134,7 @@ class _MainPageState extends State<MainPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text("영상 썸네일")
+                          //d
                         ]
                       ),
                     ),
