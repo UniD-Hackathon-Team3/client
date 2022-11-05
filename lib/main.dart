@@ -43,7 +43,7 @@ class _MainFrameState extends State<MainFrame> {
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
-            child: AppBar(title: Image.asset('../images/logoWhite.png', width: 100,),),
+            child: AppBar(title: Image.asset('images/logoWhite.png', width: 100,),),
           ),
           Expanded(child: [MainPage(), Text("2"), Text("3")][tab]),
           Container(

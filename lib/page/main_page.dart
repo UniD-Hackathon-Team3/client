@@ -123,7 +123,7 @@ class _MainPageState extends State<MainPage> {
                 Stack(
                   children:[
                     Container(
-                    height: deviceHeight * 0.6,
+                    height: deviceHeight * 0.5,
                     width: double.infinity,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20), //모서리를 둥글게
