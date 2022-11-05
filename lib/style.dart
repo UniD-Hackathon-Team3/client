@@ -17,6 +17,12 @@ var textWHAT = TextStyle(
   fontWeight: FontWeight.bold,
 );
 
+var textWHATYellow = TextStyle(
+  fontSize: 23.0,
+  color: yellowboxcolor,
+  fontWeight: FontWeight.bold,
+);
+
 var textWhiteName = TextStyle(
   fontSize: 13.0,
   color: Colors.white,

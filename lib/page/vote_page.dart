@@ -25,7 +25,20 @@ class _VotePageState extends State<VotePage> {
             padding: const EdgeInsets.fromLTRB(8, 8, 8, 28),
             child: Image.asset('../images/vote.png'),
           ),
-          Text("WHAT IS TOMORROW TOPIC ?", style: style.textWHAT),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text("W", style: style.textWHATYellow,),
+              Text("HAT ", style: style.textWHAT,),
+              Text("I", style: style.textWHATYellow,),
+              Text("S ", style: style.textWHAT,),
+              Text("T", style: style.textWHATYellow,),
+              Text("OMORROW ", style: style.textWHAT,),
+              Text("T", style: style.textWHATYellow,),
+              Text("OPIC ", style: style.textWHAT,),
+              Text("?", style: style.textWHATYellow,),
+            ],
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [

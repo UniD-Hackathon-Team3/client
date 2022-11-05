@@ -24,7 +24,20 @@ class _MainPageState extends State<MainPage> {
         children: [
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 0, 10, 10),
-            child: Text("WHAT IS TODAY TOPIC ?", style: style.textWHAT,),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("W", style: style.textWHATYellow,),
+                Text("HAT ", style: style.textWHAT,),
+                Text("I", style: style.textWHATYellow,),
+                Text("S ", style: style.textWHAT,),
+                Text("T", style: style.textWHATYellow,),
+                Text("ODAY ", style: style.textWHAT,),
+                Text("T", style: style.textWHATYellow,),
+                Text("OPIC ", style: style.textWHAT,),
+                Text("?", style: style.textWHATYellow,),
+              ],
+            )
           ),
           Row(
             children: [
