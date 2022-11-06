@@ -206,7 +206,7 @@ class _MainSearchState extends State<MainSearch> {
                             margin: EdgeInsets.only(
                                 top: 120, right: deviceWidth / 8),
                             child: Icon(Icons.favorite_rounded)),
-                        margin: EdgeInsets.only(left: 60, bottom: 3),
+                        margin: EdgeInsets.only(left: 10, bottom: 3),
                         width: deviceWidth / 4,
                         height: 150,
                         decoration: BoxDecoration(
@@ -224,7 +224,7 @@ class _MainSearchState extends State<MainSearch> {
                             margin: EdgeInsets.only(
                                 top: 120, right: deviceWidth / 8),
                             child: Icon(Icons.favorite_rounded)),
-                        margin: EdgeInsets.only(left: 50, bottom: 3),
+                        margin: EdgeInsets.only(left: 10, bottom: 3),
                         width: deviceWidth / 4,
                         height: 150,
                         decoration: BoxDecoration(
@@ -262,7 +262,7 @@ class _MainSearchState extends State<MainSearch> {
                             margin: EdgeInsets.only(
                                 top: 120, right: deviceWidth / 8),
                             child: Icon(Icons.person_rounded)),
-                        margin: EdgeInsets.only(left: 50, bottom: 3),
+                        margin: EdgeInsets.only(left: 10, bottom: 3),
                         width: deviceWidth / 4,
                         height: 150,
                         decoration: BoxDecoration(
@@ -280,7 +280,7 @@ class _MainSearchState extends State<MainSearch> {
                             margin: EdgeInsets.only(
                                 top: 120, right: deviceWidth / 8),
                             child: Icon(Icons.person_rounded)),
-                        margin: EdgeInsets.only(left: 50, bottom: 3),
+                        margin: EdgeInsets.only(left: 10, bottom: 3),
                         width: deviceWidth / 4,
                         height: 150,
                         decoration: BoxDecoration(
