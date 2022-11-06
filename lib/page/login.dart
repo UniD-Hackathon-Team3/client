@@ -41,14 +41,16 @@ class _LoginPageState extends State<LoginPage>{
                 GestureDetector(onTap: () {showNotification2();}, child: Image.asset('images/logoWhite.png', width: 200,)),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(50, 0, 300, 10),
-                  child: Text("id",style: TextStyle(color: Colors.white
-                  ,fontWeight: FontWeight.w800, fontSize: 25)),
+                  
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                   child: TextField(
                       controller: idController,
                       decoration: InputDecoration(
+                        hintText: '   ID',
+                        hintStyle : TextStyle(color: Colors.white
+                  ,fontWeight: FontWeight.w800, fontSize: 25),
                         border: InputBorder.none,
                         filled: true,
                         fillColor: style.whiteboxcolor,
@@ -68,14 +70,17 @@ class _LoginPageState extends State<LoginPage>{
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(50, 0, 300, 10),
-                  child: Text("pw",style: TextStyle(color: Colors.white
-                      ,fontWeight: FontWeight.w800, fontSize: 25)),
+                  
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                   child: TextField(
+                    
                       controller: pwController,
                       decoration: InputDecoration(
+                        hintText: '   PW',
+                        hintStyle : TextStyle(color: Colors.white
+                  ,fontWeight: FontWeight.w800, fontSize: 25),
                         filled: true,
                         fillColor: style.whiteboxcolor,
                         enabledBorder: OutlineInputBorder(

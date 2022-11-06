@@ -206,7 +206,7 @@ class _MainSearchState extends State<MainSearch> {
                             margin: EdgeInsets.only(
                                 top: 120, right: deviceWidth / 8),
                             child: Icon(Icons.favorite_rounded)),
-                        margin: EdgeInsets.only(left: 50, bottom: 3),
+                        margin: EdgeInsets.only(left: 60, bottom: 3),
                         width: deviceWidth / 4,
                         height: 150,
                         decoration: BoxDecoration(
@@ -218,7 +218,7 @@ class _MainSearchState extends State<MainSearch> {
                             borderRadius: BorderRadius.circular(30)),
                       )
                   else //검색버튼 누르기 전
-                    for (var i = 0; i < 5; i++)
+                    for (var i = 32; i < 36; i++)
                       Container(
                         child: Container(
                             margin: EdgeInsets.only(
@@ -230,7 +230,7 @@ class _MainSearchState extends State<MainSearch> {
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: AssetImage("images/lake.jpg")),
+                                image: NetworkImage("http://13.125.205.227:3000/static/${i}.png")),
                             borderRadius: BorderRadius.circular(30)),
                       )
                 ],
@@ -256,7 +256,7 @@ class _MainSearchState extends State<MainSearch> {
               child: Row(
                 children: [
                   if (isSearch) //검색 버튼 눌렀을 때
-                    for (var i = 0; i < searchImgUrl.length; i++)
+                    for (var i = 0; i < 3; i++)
                       Container(
                         child: Container(
                             margin: EdgeInsets.only(
@@ -269,12 +269,12 @@ class _MainSearchState extends State<MainSearch> {
                             image: DecorationImage(
                                 fit: BoxFit.cover,
                                 image: AssetImage(
-                                    "images/f${i+1}.jpg")),
+                                    "images/f${i+1}.jpg" )),
 
                             borderRadius: BorderRadius.circular(30)),
                       )
                   else //검색 버튼 누르기 전
-                    for (var i = 0; i < 5; i++)
+                    for (var i = 4; i < 9; i++)
                       Container(
                         child: Container(
                             margin: EdgeInsets.only(
@@ -286,7 +286,7 @@ class _MainSearchState extends State<MainSearch> {
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 fit: BoxFit.cover,
-                                image: AssetImage("images/lake.jpg")),
+                                image: AssetImage("images/f${i}.jpeg")),
                             borderRadius: BorderRadius.circular(30)),
                       ),
                 ],

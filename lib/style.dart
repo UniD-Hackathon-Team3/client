@@ -59,15 +59,13 @@ Widget ShowVideoImage(deviceHeight, deviceWidth, feed, img) {
         width: deviceWidth * 0.9,
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20), //모서리를 둥글게
-            color: Color(0xFFD9D9D9)
+            color: Color(0xFFD9D9D9),
+            image : DecorationImage(
+              fit : BoxFit.cover,
+              image : img.image
+            )
         ),
         margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              img
-            ]
-        ),
       ),
       Positioned(
           bottom: deviceHeight * 0.02,
