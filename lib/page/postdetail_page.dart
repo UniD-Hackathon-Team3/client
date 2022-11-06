@@ -32,17 +32,7 @@ class _PostDetailPageState extends State<PostDetailPage> {
                 Padding(
                     padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
                     child: AppBar(title: Image.asset('images/logoWhite.png', width: 100,),
-                        actions: [
-                          Container(
-                            height: 50,
-                            width: 50,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(30), //모서리를 둥글게
-                              color: Color(0xDEDEDEDE),
-                            ),
-                            margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                            child: Text(''),
-                          )])
+                        )
                 ),
                 Expanded(
                   child: Padding(

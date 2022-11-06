@@ -11,9 +11,11 @@ class MainSearch extends StatefulWidget {
   @override
   State<MainSearch> createState() => _MainSearchState();
 }
-
+String pa="f";
 bool isSearch = false;
+var cnt=0;
 var todayTopic=[];
+var searchImgUrl = [];
 class _MainSearchState extends State<MainSearch> {
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,6 @@ class _MainSearchState extends State<MainSearch> {
     var st=[];
     var searchRes = [];
     var searchPostId = [];
-    var searchImgUrl = [];
     const url = "http://13.125.205.227:3000/feed/serach/result";
 /*
     Future<dynamic>signupUser(String userId, String userPw) async{
@@ -37,25 +38,28 @@ class _MainSearchState extends State<MainSearch> {
 */
     Future<dynamic> getRandomTopic() async {
       final _res=await http.post(
-        Uri.parse('http://13.125.205.227:3000/topic/randomTopic')
+          Uri.parse('http://13.125.205.227:3000/topic/randomTopic')
       );
       var resul=jsonDecode(_res.body);
       todayTopic=[];
       for(int i=0;i<resul["randomtopics"].length;i++)
-        {
-          if(resul["randomtopics"][i]["title"]==Null)
-            continue;
-          var tmp=resul["randomtopics"][i]["title"]??"Error";
-          print(tmp);
-          if(tmp!="Error")
-           todayTopic.add(tmp);
-
-        }
+      {
+        if(resul["randomtopics"][i]["title"]==Null)
+          continue;
+        var tmp=resul["randomtopics"][i]["title"]??"Error";
+        print(tmp);
+        if(tmp!="Error")
+          todayTopic.add(tmp);
+      }
       print(todayTopic);
     }
     if(!isSearch) {
       getRandomTopic();
     }
+    else
+      {
+        print(searchImgUrl);
+      }
     Future<dynamic> plz(String data) async {
       final response = await http.post(
           Uri.parse('http://13.125.205.227:3000/feed/search'),
@@ -75,13 +79,14 @@ class _MainSearchState extends State<MainSearch> {
         }
         //searchPostId.add(jsonDecode(res.body));
       }
+      searchImgUrl=[];
       for (int i = 0; i < searchPostId.length; i++) {
         var def = "http://13.125.205.227:3000/static/";
         var cus = searchPostId[i] + ".png";
         var fin_url = def + cus;
-        searchImgUrl.add(fin_url);
+        setState((){searchImgUrl.add(fin_url);});
       }
-      isSearch = true;
+      cnt=searchImgUrl.length;
       print(searchImgUrl);
     }
 
@@ -115,21 +120,20 @@ class _MainSearchState extends State<MainSearch> {
                   textAlign: TextAlign.center,
                   controller: myController,
                   onChanged: (value) => {
-                        searchTarget = value,
-                      },
+                    searchTarget = value,
+                  },
                   onSubmitted: (value) => {
-                        setState(() {
-                          isSearch = true;
-                        }),
-                        plz(searchTarget)
-                      },
+                    setState(() {
+                      isSearch = true;
+                    }),
+                    plz(searchTarget)
+                  },
                   decoration: InputDecoration(
                     filled: true,
-                    fillColor: Colors.black12,
-                    enabledBorder: OutlineInputBorder(
-                        //borderSide: BorderSide(color: Colors.white, width: 2.0),
+                    fillColor: Colors.white,
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white, width: 10.0),
                         borderRadius: BorderRadius.circular(30)),
-                    border: OutlineInputBorder(),
                     hintText: 'Search..',
                     suffixIcon: Icon(Icons.search),
                   )),
@@ -139,11 +143,11 @@ class _MainSearchState extends State<MainSearch> {
                     top: deviceHeight / 30, left: deviceWidth / 50),
                 child: ClipOval(
                     child: Image.asset(
-                  'images/lake.jpg',
-                  width: 50,
-                  height: 50,
-                  fit: BoxFit.cover,
-                )))
+                      'images/lake.jpg',
+                      width: 50,
+                      height: 50,
+                      fit: BoxFit.cover,
+                    )))
           ],
         ),
       ),
@@ -152,20 +156,20 @@ class _MainSearchState extends State<MainSearch> {
           child: Row(children: [
             ///오늘의 태그
             ///
-              for (int i = 0; i < todayTopic.length; i++)
-                Container(
-                  child: Text('${todayTopic[i]}',
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      style: TextStyle(
-                          fontSize: 15, color: Colors.white, height: 2.5)),
-                  width: deviceWidth / 3,
-                  height: deviceHeight / 15,
-                  margin: EdgeInsets.only(bottom: 10, left: deviceWidth / 15),
-                  decoration: BoxDecoration(
-                      border: Border.all(width: 1, color: Colors.white),
-                      borderRadius: BorderRadius.circular(30)),
-                )
+            for (int i = 0; i < todayTopic.length; i++)
+              Container(
+                child: Text('${todayTopic[i]}',
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: TextStyle(
+                        fontSize: 15, color: Colors.white, height: 2.5)),
+                width: deviceWidth / 3,
+                height: deviceHeight / 15,
+                margin: EdgeInsets.only(bottom: 10, left: deviceWidth / 15),
+                decoration: BoxDecoration(
+                    border: Border.all(width: 0.3, color: Colors.white),
+                    borderRadius: BorderRadius.circular(30)),
+              )
           ])),
       Row(children: [
         Container(
@@ -177,13 +181,13 @@ class _MainSearchState extends State<MainSearch> {
             )),
         Container(
             child: Text(
-          "인기 컨텐츠",
-          style: TextStyle(fontSize: 20, color: Colors.white),
-        ))
+              "인기 컨텐츠",
+              style: TextStyle(fontSize: 20, color: Colors.white),
+            ))
       ]),
       //인기 피드
       Container(
-          /*
+        /*
         decoration: BoxDecoration(
           border: Border.all(width:1,color: Colors.white),
         ),
@@ -195,13 +199,13 @@ class _MainSearchState extends State<MainSearch> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  if (isSearch)
-                    for (var i = 0; i < 5; i++)
+                  if (isSearch) //검색 버튼 눌렀을 때
+                    for (var i = 0; i < searchImgUrl.length; i++)
                       Container(
                         child: Container(
                             margin: EdgeInsets.only(
                                 top: 120, right: deviceWidth / 8),
-                            child: Icon(Icons.person_rounded)),
+                            child: Icon(Icons.favorite_rounded)),
                         margin: EdgeInsets.only(left: 50, bottom: 3),
                         width: deviceWidth / 4,
                         height: 150,
@@ -209,17 +213,17 @@ class _MainSearchState extends State<MainSearch> {
                             image: DecorationImage(
                                 fit: BoxFit.cover,
                                 image: NetworkImage(
-                                    'http://13.125.205.227:3000/static/4.png')),
+                                    searchImgUrl[i])),
                             border: Border.all(width: 1, color: Colors.white),
                             borderRadius: BorderRadius.circular(30)),
                       )
-                  else
-                    for (var i = 0; i < searchImgUrl.length; i++)
+                  else //검색버튼 누르기 전
+                    for (var i = 0; i < 5; i++)
                       Container(
                         child: Container(
                             margin: EdgeInsets.only(
                                 top: 120, right: deviceWidth / 8),
-                            child: Icon(Icons.person_rounded)),
+                            child: Icon(Icons.favorite_rounded)),
                         margin: EdgeInsets.only(left: 50, bottom: 3),
                         width: deviceWidth / 4,
                         height: 150,
@@ -227,7 +231,6 @@ class _MainSearchState extends State<MainSearch> {
                             image: DecorationImage(
                                 fit: BoxFit.cover,
                                 image: AssetImage("images/lake.jpg")),
-                            border: Border.all(width: 1, color: Colors.white),
                             borderRadius: BorderRadius.circular(30)),
                       )
                 ],
@@ -252,25 +255,7 @@ class _MainSearchState extends State<MainSearch> {
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
-                  if (isSearch)
-                  for (var i = 0; i < 5; i++)
-                      Container(
-                        child: Container(
-                            margin: EdgeInsets.only(
-                                top: 120, right: deviceWidth / 8),
-                            child: Icon(Icons.person_rounded)),
-                        margin: EdgeInsets.only(left: 50, bottom: 3),
-                        width: deviceWidth / 4,
-                        height: 150,
-                        decoration: BoxDecoration(
-                            image: DecorationImage(
-                                fit: BoxFit.cover,
-                                image: NetworkImage(
-                                    'http://13.125.205.227:3000/static/4.png')),
-                            border: Border.all(width: 1, color: Colors.white),
-                            borderRadius: BorderRadius.circular(30)),
-                      )
-                    else
+                  if (isSearch) //검색 버튼 눌렀을 때
                     for (var i = 0; i < searchImgUrl.length; i++)
                       Container(
                         child: Container(
@@ -283,8 +268,25 @@ class _MainSearchState extends State<MainSearch> {
                         decoration: BoxDecoration(
                             image: DecorationImage(
                                 fit: BoxFit.cover,
+                                image: AssetImage(
+                                    "images/f${i+1}.jpg")),
+
+                            borderRadius: BorderRadius.circular(30)),
+                      )
+                  else //검색 버튼 누르기 전
+                    for (var i = 0; i < 5; i++)
+                      Container(
+                        child: Container(
+                            margin: EdgeInsets.only(
+                                top: 120, right: deviceWidth / 8),
+                            child: Icon(Icons.person_rounded)),
+                        margin: EdgeInsets.only(left: 50, bottom: 3),
+                        width: deviceWidth / 4,
+                        height: 150,
+                        decoration: BoxDecoration(
+                            image: DecorationImage(
+                                fit: BoxFit.cover,
                                 image: AssetImage("images/lake.jpg")),
-                            border: Border.all(width: 1, color: Colors.white),
                             borderRadius: BorderRadius.circular(30)),
                       ),
                 ],

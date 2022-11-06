@@ -64,9 +64,17 @@ class _VotePageState extends State<VotePage> {
                                   filled: true,
                                   fillColor: style.whiteboxcolor,
                                   enabledBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30)),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderRadius: BorderRadius.circular(30)),
+                          borderSide: BorderSide(
+                            color:Color(0xFF716EFF),
+                            width:1
+                          ),
+                            borderRadius: BorderRadius.circular(30)),
+                        focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color:Color(0xFF716EFF),
+                                width:1
+                            ),
+                            borderRadius: BorderRadius.circular(30)),
                                 )),
                           ),
                         ),
@@ -89,7 +97,7 @@ class _VotePageState extends State<VotePage> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(snapshot.data![0]['title']),
+                            Text(snapshot.data![0]['title'], style: style.textstyle1),
                           ]
                       ),
                     ),
@@ -106,7 +114,7 @@ class _VotePageState extends State<VotePage> {
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(snapshot.data![1]['title']),
+                                Text(snapshot.data![1]['title'], style: style.textstyle1),
                               ]
                           ),
                         ),
@@ -121,7 +129,7 @@ class _VotePageState extends State<VotePage> {
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(snapshot.data![2]['title']),
+                                Text(snapshot.data![2]['title'], style: style.textstyle1),
                               ]
                           ),
                         ),
@@ -138,7 +146,7 @@ class _VotePageState extends State<VotePage> {
                       child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(snapshot.data![3]['title']),
+                            Text(snapshot.data![3]['title'], style: style.textstyle1),
                           ]
                       ),
                     ),
@@ -155,7 +163,7 @@ class _VotePageState extends State<VotePage> {
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text(snapshot.data![4]['title']),
+                                Text(snapshot.data![4]['title'], style: style.textstyle1),
                               ]
                           ),
                         ),
@@ -170,7 +178,7 @@ class _VotePageState extends State<VotePage> {
                           child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Text("1"),
+                                Text(snapshot.data![5]['title'], style: style.textstyle1)
                               ]
                           ),
                         ),

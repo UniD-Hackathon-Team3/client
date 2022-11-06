@@ -15,7 +15,7 @@ class UploadPage extends StatefulWidget {
   State<UploadPage> createState() => _UploadPageState();
 }
 bool onlyFriendFlag = true;
-String todayQuestion = "당신의 어린 시절 사진을 공유해주세요!";
+String todayQuestion = "오늘 가장 기억에 남는 일은??";
 final TextEditingController feedbackController = TextEditingController();
 dynamic? _image;
 File? showImage;
@@ -51,17 +51,7 @@ class _UploadPageState extends State<UploadPage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
               child: AppBar(title: Image.asset('images/logoWhite.png', width: 100,),
-                  actions: [
-                    Container(
-                      height: 50,
-                      width: 50,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(30), //모서리를 둥글게
-                        color: Color(0xDEDEDEDE),
-                      ),
-                      margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
-                      child: Text(''),
-                    )])
+                  )
             ),
             Expanded(
               child: Padding(
@@ -91,13 +81,13 @@ class _UploadPageState extends State<UploadPage> {
                             width: deviceWidth * 0.9,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20), //모서리를 둥글게
-                                color: Color(0xFFD9D9D9)
+                                color: Color.fromARGB(255, 255, 255, 255)
                             ),
                             margin: EdgeInsets.fromLTRB(0, 10, 0, 0),
                             child: showImage == null ? Column(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("영상 썸네일")
+                                  Text("이미지를 선택해주세요!")
                                 ]
                             ) : Image.file(showImage as File),
                           ),

@@ -75,7 +75,7 @@ class _MainPageState extends State<MainPage> {
                               future : todayQuestion,
                               builder: (context, snapshot){
                                 if(snapshot.hasData){
-                                  return Text(snapshot.data!['title'], style: style.textstyle1);
+                                  return Text("#${snapshot.data!['title']}", style: style.textstyle1);
                                 }
                                 else if(snapshot.hasError){
                                   return Text("${snapshot.error}");
@@ -146,7 +146,7 @@ class _MainPageState extends State<MainPage> {
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('only friends',
+                              Text('#Following',
                                   style: style.textstyle1),
                             ]
                         ),
@@ -167,7 +167,7 @@ class _MainPageState extends State<MainPage> {
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text('random',
+                              Text('#Ramdom',
                                   style: style.textstyle1),
                             ]
                         ),
@@ -186,13 +186,13 @@ class _MainPageState extends State<MainPage> {
                                         for(int i = 0; i < 4; i++) GestureDetector(
                                             onTap: () {
                                               Navigator.push(context,
-                                                MaterialPageRoute(builder: (context) => PostDetailPage(feed : snapshot.data![i], img : Image.network('http://13.125.205.227:3000/static/4.png'))
+                                                MaterialPageRoute(builder: (context) => PostDetailPage(feed : snapshot.data![i], img : Image.network('http://13.125.205.227:3000/static/${snapshot.data![i]['post_id']}.png'))
                                                 ),
                                               );
                                             },
                                             child: Padding(
                                               padding: const EdgeInsets.all(8.0),
-                                              child:style.ShowVideoImage(deviceHeight, deviceWidth, snapshot.data![i], Image.network('http://13.125.205.227:3000/static/4.png'))  
+                                              child:style.ShowVideoImage(deviceHeight, deviceWidth, snapshot.data![i], Image.network('http://13.125.205.227:3000/static/${snapshot.data![i]['post_id']}.png'))  
                                             )
                                         ),
                                       ],

@@ -1,9 +1,11 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:nowat/page/upload_page.dart';
 import '../style.dart' as style;
 import '../main.dart';
 import '../future/user.dart';
+import '../notification.dart';
 class LoginPage extends StatefulWidget{
   const LoginPage({Key? key, this.setStart}): super(key: key);
   final setStart;
@@ -18,8 +20,10 @@ class _LoginPageState extends State<LoginPage>{
   goNextPage() async {
     checkLogin = await loginUser(idController.text, pwController.text);
     if (jsonDecode(checkLogin)['result'] == "success") {
-
       widget.setStart();
+      Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const UploadPage()),
+      );
     }
   }
 
@@ -34,27 +38,38 @@ class _LoginPageState extends State<LoginPage>{
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                Image.asset('images/logoWhite.png', width: 200,),
+                GestureDetector(onTap: () {showNotification2();}, child: Image.asset('images/logoWhite.png', width: 200,)),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(50, 0, 30, 10),
-                  child: Text("id",style: style.textWhiteName),
+                  padding: const EdgeInsets.fromLTRB(50, 0, 300, 10),
+                  child: Text("id",style: TextStyle(color: Colors.white
+                  ,fontWeight: FontWeight.w800, fontSize: 25)),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
                   child: TextField(
                       controller: idController,
                       decoration: InputDecoration(
+                        border: InputBorder.none,
                         filled: true,
                         fillColor: style.whiteboxcolor,
                         enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            color:Color(0xFF716EFF),
+                            width:1
+                          ),
                             borderRadius: BorderRadius.circular(30)),
                         focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color:Color(0xFF716EFF),
+                                width:1
+                            ),
                             borderRadius: BorderRadius.circular(30)),
                       )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(50, 0, 30, 10),
-                  child: Text("pw",style: style.textWhiteName,),
+                  padding: const EdgeInsets.fromLTRB(50, 0, 300, 10),
+                  child: Text("pw",style: TextStyle(color: Colors.white
+                      ,fontWeight: FontWeight.w800, fontSize: 25)),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
@@ -64,8 +79,16 @@ class _LoginPageState extends State<LoginPage>{
                         filled: true,
                         fillColor: style.whiteboxcolor,
                         enabledBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color:Color(0xFF716EFF),
+                                width:1
+                            ),
                             borderRadius: BorderRadius.circular(30)),
                         focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                                color:Color(0xFF716EFF),
+                                width:1
+                            ),
                             borderRadius: BorderRadius.circular(30)),
                       )),
                 ),
@@ -74,7 +97,6 @@ class _LoginPageState extends State<LoginPage>{
                   child: GestureDetector(
                     onTap: () {
                       goNextPage();
-                      print("${idController.text},${pwController.text}");
                     },
                     child: Container(
                       height: 40,
