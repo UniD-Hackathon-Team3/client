@@ -20,13 +20,10 @@ class _LoginPageState extends State<LoginPage>{
   goNextPage() async {
     checkLogin = await loginUser(idController.text, pwController.text);
     if (jsonDecode(checkLogin)['result'] == "success") {
+
       widget.setStart();
-      Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const UploadPage()),
-      );
     }
   }
-
   @override
   Widget build(BuildContext context){
     final deviceWidth = MediaQuery.of(context).size.width;
@@ -38,10 +35,10 @@ class _LoginPageState extends State<LoginPage>{
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                GestureDetector(onTap: () {showNotification2();}, child: Image.asset('images/logoWhite.png', width: 200,)),
+                Image.asset('images/logoWhite.png', width: 200,),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(50, 0, 300, 10),
-                  
+                  padding: const EdgeInsets.fromLTRB(50, 0, 30, 10),
+                  child: Text("id",style: style.textWhiteName),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
@@ -69,8 +66,8 @@ class _LoginPageState extends State<LoginPage>{
                       )),
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(50, 0, 300, 10),
-                  
+                  padding: const EdgeInsets.fromLTRB(50, 0, 30, 10),
+                  child: Text("pw",style: style.textWhiteName,),
                 ),
                 Padding(
                   padding: const EdgeInsets.fromLTRB(30, 0, 30, 10),
@@ -102,6 +99,7 @@ class _LoginPageState extends State<LoginPage>{
                   child: GestureDetector(
                     onTap: () {
                       goNextPage();
+                      print("${idController.text},${pwController.text}");
                     },
                     child: Container(
                       height: 40,
